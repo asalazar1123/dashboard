@@ -1,15 +1,30 @@
 body{
-    background-color: #454545 !important;
+    background-color: #616161 !important;
 }
 
 .navbar-brand img{
     width: 30px;
     height: auto;
-    filter: invert(0.2);
 }
 
 .navbar-brand span{
-    color: orange;
+    color:orange;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+
+.barra-lateral{
+    margin-top: 10%;
+    height: 500px;
+    width: 200px;
+    padding: 10px;
+}
+
+#lateral h1{
+    color:white;
+    font-size: 20px;
+    font-family:impact;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
