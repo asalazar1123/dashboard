@@ -1,5 +1,8 @@
 import { fetchApi } from "./fetch.js";
 
+let magnitudes = [];
+let geographicReferences = [];
+
 const rgbaRedColor = "orange";
 const rgbRedColor = "coral";
 
@@ -10,20 +13,20 @@ async function renderData() {
     const earthquakes = await fetchApi(
         "https://api.gael.cloud/general/public/sismos"
     );
+    console.log(earthquakes);
 
-    earthquakes.sort((a, b) => new Date(b.Fecha) - new Date(a.Fecha));
-
-    const ultimos5Sismos = earthquakes.slice(0, 5);
-
-    const magnitudes = ultimos5Sismos.map((earthquake) => parseFloat(earthquake.Magnitud));
-    const geographicReferences = ultimos5Sismos.map((earthquake) => earthquake.RefGeografica);
+    magnitudes = earthquakes.map((earthquake) => earthquake.Magnitud);
+    geographicReferences = earthquakes.map((earthquake) => earthquake.RefGeografica);
 
     const backgroundColors = magnitudes.map((magnitude) =>
         magnitude > 3 ? rgbaRedColor : rgbaBlueColor
     );
-    const borderColors = magnitudes.map((magnitude) =>
-        magnitude > 3 ? rgbRedColor : rgbBlueColor
+    const borderColors = magnitudes.map((magnitude) => magnitude > 3 ? rgbRedColor : rgbBlueColor
     );
+    console.log(backgroundColors);
+    console.log(borderColors);
+
+    console.log(geographicReferences);
 
     const ctx = document.getElementById("myChart");
 
@@ -37,7 +40,7 @@ async function renderData() {
                     data: magnitudes,
                     borderWidth: 1,
                     backgroundColor: backgroundColors,
-                    borderColor: borderColors,
+                    borderColor: borderColors
                 },
             ],
         },
@@ -47,32 +50,31 @@ async function renderData() {
                     beginAtZero: true,
                 },
             },
-            plugins: {
+            plugins: { 
                 title: {
                     display: true,
-                    text: "Sismos por localidad",
+                    text: 'Sismos por localidad' ,
                     padding: {
                         top: 20,
-                        bottom: 30,
-                    },
+                        bottom: 30
+                    }
                 },
                 tooltip: {
                     callbacks: {
                         label: function (context) {
-                            let label = context.dataset.label || "";
+                            let label = context.dataset.label || '';
                             if (label) {
-                                label += ": ";
+                                label += ': ';
                             }
                             if (context.parsed.y !== null) {
-                                label += context.parsed.y + "°";
+                                label += context.parsed.y + '°';
                             }
                             return label;
-                        },
-                    },
-                },
+                        }
+                    }
+                }
             },
         },
     });
 }
-
 renderData();
