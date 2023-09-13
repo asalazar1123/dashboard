@@ -1,80 +1,90 @@
-import { fetchApi } from "./fetch.js";
+import { fetchApi } from "./funciones.js";
 
-let magnitudes = [];
-let geographicReferences = [];
 
-const rgbaRedColor = "orange";
-const rgbRedColor = "coral";
+let codigo = [];
 
-const rgbaBlueColor = "coral";
-const rgbBlueColor = "orange";
+let estacion = [];
+ 
 
-async function renderData() {
-    const earthquakes = await fetchApi(
-        "https://api.gael.cloud/general/public/sismos"
-    );
-    console.log(earthquakes);
+async function renderData(){
 
-    magnitudes = earthquakes.map((earthquake) => earthquake.Magnitud);
-    geographicReferences = earthquakes.map((earthquake) => earthquake.RefGeografica);
+    const dataApi = await fetchApi('https://api.gael.cloud/general/public/clima/')
 
-    const backgroundColors = magnitudes.map((magnitude) =>
-        magnitude > 3 ? rgbaRedColor : rgbaBlueColor
-    );
-    const borderColors = magnitudes.map((magnitude) => magnitude > 3 ? rgbRedColor : rgbBlueColor
-    );
-    console.log(backgroundColors);
-    console.log(borderColors);
+    console.log(dataApi)
 
-    console.log(geographicReferences);
+    codigo = dataApi.map((cd) => cd.Codigo)
 
-    const ctx = document.getElementById("myChart");
+    console.log(codigo);
+
+    estacion = dataApi.map((cd1) => cd1.Estacion)
+
+    console.log(estacion);
+   
+    const codEst = [{codigo}, {estacion}];
+
+
+    let html = "";
+
+    // aqui esta listo para hacer recorrido con FOR o split
+
+        codEst.forEach(function(element, index){
+        html += "<option> " + estacion[1] + " </option>";
+        
+    });
+
+
+ 
+    // aqui esta inserto el ID del select
+    document.querySelector('#regiones').innerHTML = html;
+
+
+    
+    const ctx = document.getElementById('myChart')
+
+ 
 
     new Chart(ctx, {
-        type: "bar",
+
+        type: 'bar',
+
         data: {
-            labels: geographicReferences,
-            datasets: [
-                {
-                    label: "Sismos por Localidad",
-                    data: magnitudes,
-                    borderWidth: 1,
-                    backgroundColor: backgroundColors,
-                    borderColor: borderColors
-                },
-            ],
+
+          labels: Estacion,
+
+          datasets: [{
+
+            label: 'Climas de Chile',
+
+            data: magnitudes,
+
+            borderWidth: 1,
+
+            backgroundColor: backgroundColors,
+            
+            borderColor: borderColor
+
+          },]
+
         },
+
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-            plugins: { 
-                title: {
-                    display: true,
-                    text: 'Sismos por localidad' ,
-                    padding: {
-                        top: 20,
-                        bottom: 30
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed.y !== null) {
-                                label += context.parsed.y + '°';
-                            }
-                            return label;
-                        }
-                    }
-                }
-            },
-        },
-    });
+
+          scales: {
+
+            y: {
+
+              beginAtZero: true
+
+            }
+
+          }
+
+        }
+
+      });
+
 }
-renderData();
+
+ 
+
+renderData()
