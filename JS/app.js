@@ -34,7 +34,8 @@ async function renderData() {
         selectRegiones.appendChild(option);
     });
 
-    const pedirInfo = document.getElementById('buscar')//falta aun...
+const buscarInfo = document.getElementById('buscar'); //creacion de boton, falta aun....
+
 
     const ctx = document.getElementById('myChart');
 
