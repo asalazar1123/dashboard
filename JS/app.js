@@ -6,83 +6,46 @@ let temperatura = [];
 let humedad = [];
 let estadoGeneral = [];
 
-
 async function renderData() {
     const dataApi = await fetchApi('https://api.gael.cloud/general/public/clima/');
-    //console.log(dataApi);
 
     codigo = dataApi.map((cd) => cd.Codigo);
-    //console.log(codigo);
-
     estacion = dataApi.map((cd1) => cd1.Estacion);
-    //console.log(estacion);
+    humedad = dataApi.map((cd3)=> cd3.Humedad)
+    estadoGeneral = dataApi.map((cd4)=> cd4.Estado)
+    temperatura = dataApi.map((cd2) => parseFloat(cd2.Temp)); 
 
-    temperatura = dataApi.map((cd2) => cd2.Temp)
-    // console.log(temperatura)
+    
+    const dataObj = {
+        labels: estacion,
+        datasets: [{
+            label: 'Climas de Chile',
+            data: temperatura, 
+            borderWidth: 1,
+            backgroundColor: 'rgba(173, 216, 230, 0.7)',
+            borderColor: 'rgba(0, 0, 0, 1)',
+        }]
+    };
+console.log(dataObj)
+    
+    createChart(dataObj);
 
-    humedad = dataApi.map((cd3) => cd3.Humedad)
-    //console.log(humedad)
-
-    estadoGeneral = dataApi.map((cd4) => cd4.Estado)
-    //console.log(estadoGeneral)
-    let html = ""
-    const x = [
-        { cod: [codigo], ciudad: [estacion] }
-
-    ]
-   Object.keys(x).forEach(key=>
-    html += "<option>" + key.cod + "</option>"
-   )
-
-
-
-    // console.log(x)
-
-
-    //const selectRegiones = document.getElementById('regiones'); 
-
-
-    // for (let i = 0; i < x.length; i++) {
-    //     console.log(x[i].ciudad)
-    //     html += "<option value=" + x[i].cod + ">" + x[i].ciudad + "</option>";
-    //     document.querySelector('#regiones').innerHTML = html;
-    // }
-    // console.log(html)
-
-
-    // Object.keys(x).forEach(function (element) {
-    //     console.log(element)
-    //     console.log(x[element].ciudad)
-
-    //     html += "<option>" + x[element].ciudad + "</option>";
-    // })
-    document.querySelector('#regiones').innerHTML = html;
-
-
-    /*estacion.forEach(function (element) {
+    
+    const selectElement = document.getElementById('regiones');
+    for (let i = 0; i < codigo.length; i++) {
         const option = document.createElement('option');
-        option.value = element; 
-        option.text = element; 
-        selectRegiones.appendChild(option);
-    });*/
+        option.value = codigo[i];
+        option.text = estacion[i];
+        selectElement.appendChild(option);
+    }
+}
 
-    //const buscarInfo = document.getElementById('buscar'); //creacion de boton, falta aun....
-
-
+function createChart(data) {
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
         type: 'bar',
-        data: {
-            labels: estacion,
-            datasets: [{
-                label: 'Climas de Chile',
-                data: [], //agregar datos de variables para actuvar el grafico
-                borderWidth: 1,
-                backgroundColor: [],
-                borderColor: []
-            }]
-        },
+        data: data,
         options: {
             scales: {
                 y: {
@@ -92,5 +55,9 @@ async function renderData() {
         }
     });
 }
+
+
 renderData();
+
+
 
