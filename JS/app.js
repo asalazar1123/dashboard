@@ -6,35 +6,67 @@ let temperatura = [];
 let humedad = [];
 let estadoGeneral = [];
 
+
 async function renderData() {
     const dataApi = await fetchApi('https://api.gael.cloud/general/public/clima/');
-    console.log(dataApi);
+    //console.log(dataApi);
 
     codigo = dataApi.map((cd) => cd.Codigo);
-    console.log(codigo);
+    //console.log(codigo);
 
     estacion = dataApi.map((cd1) => cd1.Estacion);
-    console.log(estacion);
+    //console.log(estacion);
 
     temperatura = dataApi.map((cd2) => cd2.Temp)
-    console.log(temperatura)
+    // console.log(temperatura)
 
     humedad = dataApi.map((cd3) => cd3.Humedad)
-    console.log(humedad)
+    //console.log(humedad)
 
     estadoGeneral = dataApi.map((cd4) => cd4.Estado)
-    console.log(estadoGeneral)
+    //console.log(estadoGeneral)
+    let html = ""
+    const x = [
+        { cod: [codigo], ciudad: [estacion] }
 
-    const selectRegiones = document.getElementById('regiones'); 
+    ]
+   Object.keys(x).forEach(key=>
+    html += "<option>" + key.cod + "</option>"
+   )
 
-    estacion.forEach(function (element) {
+
+
+    // console.log(x)
+
+
+    //const selectRegiones = document.getElementById('regiones'); 
+
+
+    // for (let i = 0; i < x.length; i++) {
+    //     console.log(x[i].ciudad)
+    //     html += "<option value=" + x[i].cod + ">" + x[i].ciudad + "</option>";
+    //     document.querySelector('#regiones').innerHTML = html;
+    // }
+    // console.log(html)
+
+
+    // Object.keys(x).forEach(function (element) {
+    //     console.log(element)
+    //     console.log(x[element].ciudad)
+
+    //     html += "<option>" + x[element].ciudad + "</option>";
+    // })
+    document.querySelector('#regiones').innerHTML = html;
+
+
+    /*estacion.forEach(function (element) {
         const option = document.createElement('option');
         option.value = element; 
         option.text = element; 
         selectRegiones.appendChild(option);
-    });
+    });*/
 
-const buscarInfo = document.getElementById('buscar'); //creacion de boton, falta aun....
+    //const buscarInfo = document.getElementById('buscar'); //creacion de boton, falta aun....
 
 
     const ctx = document.getElementById('myChart');
@@ -42,13 +74,13 @@ const buscarInfo = document.getElementById('buscar'); //creacion de boton, falta
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: estacion, 
+            labels: estacion,
             datasets: [{
                 label: 'Climas de Chile',
                 data: [], //agregar datos de variables para actuvar el grafico
                 borderWidth: 1,
-                backgroundColor: [], 
-                borderColor: [] 
+                backgroundColor: [],
+                borderColor: []
             }]
         },
         options: {
