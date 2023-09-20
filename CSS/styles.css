@@ -16,15 +16,28 @@ body{
 .barra-lateral{
     margin-top: 10%;
     height: 500px;
-    width: 200px;
+    width: 250px;
     padding: 10px;
+    display: flex;
+    
 }
+
+#buscar{
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+}
+
 
 #lateral h1{
     color:white;
     font-size: 20px;
     font-family:impact;
     text-align: center;
-    text-transform: uppercase;
-    margin-top: 10px;
+    text-transform: uppercase;;
+}
+
+#lateral{
+    margin-top: 40px;
 }
