@@ -26,7 +26,7 @@
   <section id="lateral">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <div class="barra-lateral bg-dark">
             <!-- en duda si va boton o va input -->
             <div class="texto">
@@ -38,13 +38,37 @@
 
           </div>
         </div>
-        <div class="col-9">
-          <canvas id="myChart" width="400" height="400"></canvas>
+        <div class="col-8">
+
+          <canvas id="myChart" width="600" height="300"></canvas>
 
         </div>
       </div>
     </div>
   </section>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Humedad</h5>
+                    <!-- Aquí puedes mostrar la información de la humedad desde la API -->
+                    <p class="card-text"><span id="humedad-valor"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Estado General</h5>
+                    <!-- Aquí puedes mostrar la información del estado general desde la API -->
+                    <p class="card-text">Estado: <span id="estado-general"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
   <script src="JS/app.js" type="module"></script>

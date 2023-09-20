@@ -11,26 +11,25 @@ async function renderData() {
 
     codigo = dataApi.map((cd) => cd.Codigo);
     estacion = dataApi.map((cd1) => cd1.Estacion);
-    humedad = dataApi.map((cd3)=> cd3.Humedad)
-    estadoGeneral = dataApi.map((cd4)=> cd4.Estado)
-    temperatura = dataApi.map((cd2) => parseFloat(cd2.Temp)); 
+    humedad = dataApi.map((cd3) => cd3.Humedad);
+    estadoGeneral = dataApi.map((cd4) => cd4.Estado);
+    temperatura = dataApi.map((cd2) => parseFloat(cd2.Temp));
 
-    
     const dataObj = {
         labels: estacion,
         datasets: [{
-            label: 'Climas de Chile',
-            data: temperatura, 
+            label:  'Climas de Chile',
+            data: temperatura,
             borderWidth: 1,
             backgroundColor: 'rgba(173, 216, 230, 0.7)',
             borderColor: 'rgba(0, 0, 0, 1)',
         }]
     };
-console.log(dataObj)
-    
-    createChart(dataObj);
 
     
+
+    createChart(dataObj);
+
     const selectElement = document.getElementById('regiones');
     for (let i = 0; i < codigo.length; i++) {
         const option = document.createElement('option');
@@ -56,8 +55,23 @@ function createChart(data) {
     });
 }
 
+function mostrarInformacionCiudad() {
+    const selectElement = document.getElementById('regiones');
+    const ciudadSeleccionada = selectElement.value;
+    const indiceCiudad = codigo.indexOf(ciudadSeleccionada);
+    const humedadSpan = document.getElementById('humedad-valor');
+    const estadoGeneralSpan = document.getElementById('estado-general');
 
+    if (indiceCiudad !== -1) {
+        humedadSpan.textContent = `Valor de humedad: ${humedad[indiceCiudad]}`;
+        estadoGeneralSpan.textContent = `Estado: ${estadoGeneral[indiceCiudad]}`;
+    } else {
+        humedadSpan.textContent = 'Valor de humedad: No disponible';
+        estadoGeneralSpan.textContent = 'Estado: No disponible';
+    }
+}
+
+
+document.getElementById('buscar').addEventListener('click', mostrarInformacionCiudad);
+mostrarInformacionCiudad();
 renderData();
-
-
-
