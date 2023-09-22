@@ -63,8 +63,8 @@ function mostrarInformacionCiudad() {
     const estadoGeneralSpan = document.getElementById('estado-general');
 
     if (indiceCiudad !== -1) {
-        humedadSpan.textContent = `Valor de humedad: ${humedad[indiceCiudad]} %`;
-        estadoGeneralSpan.textContent = `Estado: ${estadoGeneral[indiceCiudad]}`;
+        humedadSpan.textContent = `${humedad[indiceCiudad]} %`;
+        estadoGeneralSpan.textContent = `${estadoGeneral[indiceCiudad]}`;
     } else {
         humedadSpan.textContent = 'Valor de humedad: No disponible';
         estadoGeneralSpan.textContent = 'Estado: No disponible';
