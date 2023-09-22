@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -26,14 +27,21 @@
   <section id="lateral">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3">
-          <div class="barra-lateral bg-dark">
+        <div class="col-2">
+          <div class="barra-lateral bg-dark ">
             <!-- en duda si va boton o va input -->
             <div class="texto">
-              <select name="regiones" id="regiones">
 
-              </select>
-              <button type="button" id="buscar">Buscar</button>
+              <div class="form-floating">
+                <select class="form-select" name="regiones" id="regiones" >
+                  
+                </select>
+                <label for="floatingSelect">Selecciona tu Ciudad</label>
+              </div>
+              <!-- <select name="regiones" id="regiones">
+
+              </select> -->
+              <button type="button" id="buscar" class="btn btn-primary">Buscar<i class="bi bi-search"></i></button>
             </div>
 
           </div>
@@ -50,6 +58,28 @@
       </div>
     </div>
   </section>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" >Humedad <i class="bi bi-water"></i> </h5>
+                    <p class="card-text"><span id="humedad-valor"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Estado General <i class="bi bi-cloud-fill"></i></h5>
+                    <!-- Aquí puedes mostrar la información del estado general desde la API -->
+                    <p class="card-text">Estado: <span id="estado-general"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
   <script src="JS/app.js" type="module"></script>
