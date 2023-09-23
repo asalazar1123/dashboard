@@ -8,6 +8,7 @@ let estacion = [];
 let temperatura = [];
 let humedad = [];
 let estadoGeneral = [];
+let myChart = null;
 
 // mandamos a llamar la API
 
@@ -54,6 +55,25 @@ function mostrarInformacionCiudad() {
     const estadoGeneralSpan = document.getElementById('estado-general');
 
     if (indiceCiudad !== -1) {
+
+        if (myChart !== null) {
+            myChart.destroy();
+        }
+
+        const highlightedData = temperatura.map((temp, index) => (index === indiceCiudad) ? temp : null);
+
+        const dataObj = {
+            labels: estacion,
+            data: temperatura,
+        };
+        
+        const dataObj2 = {
+            labels: estacion,
+            data: highlightedData,
+        };
+        
+        createChart(dataObj, dataObj2);
+
         humedadSpan.textContent = `${humedad[indiceCiudad]} %`;
         estadoGeneralSpan.textContent = `${estadoGeneral[indiceCiudad]}`;
     } else {
@@ -62,8 +82,15 @@ function mostrarInformacionCiudad() {
     }
 }
 
-// aqui mandamos a llamar al boton para que al hacer click este nos muestre la informacion proporcionada de la ciudad
+// aqui mandamos a llamar al boton para que al hacer click este nos muestre la informacion proporcionada de la ciudad y nos limpie data
 
 document.getElementById('buscar').addEventListener('click', mostrarInformacionCiudad);
+document.getElementById('limpiar').addEventListener('click', renderData);
 mostrarInformacionCiudad();
 renderData();
+
+
+
+
+
+
