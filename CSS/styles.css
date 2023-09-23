@@ -1,0 +1,53 @@
+body{
+    background-color: #d8d7d7 !important;
+}
+
+.navbar-brand img{
+    width: 30px;
+    height: auto;
+}
+
+.navbar-brand span{
+    color:white;
+    font-family:Helvetica;
+}
+
+
+.barra-lateral{
+    margin-top: 10%;
+    height: 500px;
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    
+}
+
+#buscar{
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+
+#lateral h1{
+    color:white;
+    font-size: 20px;
+    font-family:impact;
+    text-align: center;
+    text-transform: uppercase;;
+}
+
+#lateral{
+    margin-top: 40px;
+}
+
+.form-floating>.form-select{
+    margin-top: 50px;
+}
+
+.texto span{
+    color: white;
+    font-family:Helvetica;
+    font-size: 20px;
+}
