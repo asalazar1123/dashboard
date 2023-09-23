@@ -1,10 +1,15 @@
-import { fetchApi } from "./funciones.js";
+import { fetchApi } from "./funciones.js";    // Realizamos importacion de funciones
+import { createChart } from "./funciones.js";
 
-let codigo = [];
+// creamos variables objetos vacias para mandarle contenido
+
+let codigo = [];  
 let estacion = [];
 let temperatura = [];
 let humedad = [];
 let estadoGeneral = [];
+
+// mandamos a llamar la API
 
 async function renderData() {
     const dataApi = await fetchApi('https://api.gael.cloud/general/public/clima/');
@@ -18,7 +23,7 @@ async function renderData() {
     const dataObj = {
         labels: estacion,
         datasets: [{
-            label:  'Climas de Chile',
+            label:  'Temperatura °C',
             data: temperatura,
             borderWidth: 1,
             backgroundColor: 'rgba(173, 216, 230, 0.7)',
@@ -27,7 +32,7 @@ async function renderData() {
     };
 
     
-
+// aqui creamos el grafico 
     createChart(dataObj);
 
     const selectElement = document.getElementById('regiones');
@@ -39,21 +44,7 @@ async function renderData() {
     }
 }
 
-function createChart(data) {
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-}
+// aqui mostramos la informacion de la ciudades que seria humedad y estado general
 
 function mostrarInformacionCiudad() {
     const selectElement = document.getElementById('regiones');
@@ -71,6 +62,7 @@ function mostrarInformacionCiudad() {
     }
 }
 
+// aqui mandamos a llamar al boton para que al hacer click este nos muestre la informacion proporcionada de la ciudad
 
 document.getElementById('buscar').addEventListener('click', mostrarInformacionCiudad);
 mostrarInformacionCiudad();

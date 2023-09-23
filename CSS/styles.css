@@ -41,3 +41,13 @@ body{
 #lateral{
     margin-top: 40px;
 }
+
+.form-floating>.form-select{
+    margin-top: 50px;
+}
+
+.texto span{
+    color: white;
+    font-family:Helvetica;
+    font-size: 20px;
+}
