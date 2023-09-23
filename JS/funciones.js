@@ -7,6 +7,8 @@ export const fetchApi = async (url)=>{
 
 let myChart = null;
 
+
+
 // exportamos funcion de crear chart
 export function createChart(data, data2) {
     const ctx = document.getElementById('myChart');
