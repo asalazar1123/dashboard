@@ -35,4 +35,3 @@ Una API es como un puente que permite que diferentes programas se comuniquen y c
 - CSS
 - JAVASCRIPT
 - BOOTSTRAP 5
-![Captura3](https://github.com/asalazar1123/dashboard/assets/132730631/cd4b6543-9d88-4015-a73d-14bc69df6040)
