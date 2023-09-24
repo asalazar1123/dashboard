@@ -23,6 +23,9 @@ Una API es como un puente que permite que diferentes programas se comuniquen y c
 
 ![Captura4](https://github.com/asalazar1123/dashboard/assets/132730631/500c4559-7078-4109-8f3a-480c66b6494c)
 
+# IMPORTANTE:
+para iniciar el proyecto darle "npm install" en la consola, recuerda tener instalado NODEJS.
+
 
 # Links
 
